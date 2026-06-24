@@ -145,8 +145,8 @@ select,.search{font-size:13px;padding:7px 11px;border:1px solid var(--line);bord
   <p>就业第一 · 不受歧视 · 对齐十五五规划。一套五层漏斗筛出的方向,配上你这张表里 1.7 万条真实数据(含 2026 新增计划)的实时「冲稳保」工具。</p>
   <div class="chips">
     <span class="chip">选科 <b>物化地</b></span>
-    <span class="chip">位次 <b>7万以后</b>(约510–550分)</span>
-    <span class="chip">定位 <b>双非/普通公办本科</b></span>
+    <span class="chip">成绩 <b>485分</b> · 物理组位次约 <b>18.1万</b></span>
+    <span class="chip">定位 <b>本科中后段 · 公办优先</b></span>
     <span class="chip">目标 <b>就业 + 不受性别歧视</b></span>
     <span class="chip">新增 <b>🆕 标注26年新增计划</b></span>
   </div>
@@ -194,16 +194,16 @@ select,.search{font-size:13px;padding:7px 11px;border:1px solid var(--line);bord
 <section><div class="wrap">
  <p class="eyebrow">★ 交互工具 · 第①⑤层</p>
  <h2>志愿探索器</h2>
- <p class="lead">输入她的<b>预估位次</b>,工具自动按近三年趋势给每个专业打「冲 / 稳 / 保」。可按推荐档、专业方向、<b>省份(多选)</b>、学校性质筛选,并标出 <b>🆕 2026 新增计划</b>。点表头排序。</p>
+ <p class="lead">已按她的真实成绩预填位次 <b>18.1万(485分)</b>,可改。工具自动按近三年趋势给每个专业打「冲 / 稳 / 保」。可按推荐档、专业方向、<b>省份(多选)</b>、<b>学校性质(她这档优先看公办)</b>筛选,并标出 <b>🆕 2026 新增计划</b>。点表头排序。</p>
  <div class="exp">
   <div class="ctrl">
    <div class="rankrow">
     <div class="rankbox">
       <label>她的预估位次(物化地)</label>
-      <input type="number" id="rankIn" value="100000" min="40000" max="300000" step="1000">
+      <input type="number" id="rankIn" value="181043" min="40000" max="300000" step="1000">
     </div>
-    <input type="range" id="rankRange" min="40000" max="280000" value="100000" step="1000">
-    <span class="scoreHint">≈ <b id="scoreEst">约545分</b> · 拖动或输入调整</span>
+    <input type="range" id="rankRange" min="40000" max="280000" value="181043" step="1000">
+    <span class="scoreHint">≈ <b id="scoreEst">约485分</b> · 已按她真实成绩预填,可改</span>
    </div>
    <div class="filters" id="recoFilters">
     <span style="font-size:12.5px;color:var(--mut);margin-right:2px">推荐档:</span>
@@ -268,45 +268,42 @@ select,.search{font-size:13px;padding:7px 11px;border:1px solid var(--line);bord
  <p class="lead">学校均来自你这张表的真实2025投档位次。点开看每个专业的推荐理由和对应院校。</p>
 
  <details class="tier" open>
-  <summary><span class="tname">🥇 第一梯队</span><span class="tband g1">硬科技 + 体制内双入口 + 女生友好</span></summary>
+  <summary><span class="tname">🥇 第一梯队</span><span class="tband g1">公办优先(哪怕偏远)+ 考编/进医院出口</span></summary>
   <div class="body">
-   <h4>① 电气工程及其自动化 —— 双非女生性价比之王</h4>
-   <p class="why">十五五新能源/储能/特高压核心;最大出口是<b>国家电网/南方电网</b>,招聘量巨大,女生进调度、继保、设计院、营销。国网考试录取、明确招女生、稳定,双非完全够得着。三个条件(政策+体制内+不歧视)全中。</p>
-   <div class="sch">稳 · <b>石家庄学院 / 怀化学院</b>(551,7.9万) ｜ 冲 · 临沂大学(573) ｜ 保 · 独立学院(510)</div>
-   <h4>② 计算机科学与技术 / 软件工程</h4>
-   <p class="why">数字经济底座;出口最宽(市场化开发 + 考公技术岗 + 国企IT);相对看能力,女生做开发/测试/产品站得住。</p>
-   <div class="sch">稳 · 河北地质大学 / 广西财经学院(551) ｜ 保 · 独立学院软件工程(510)</div>
-   <p class="note">双非读计算机尽量往长三角/珠三角走(产业近=实习多),这比学校名字更重要。</p>
-   <h4>③ 电子信息工程 / 通信工程</h4>
-   <p class="why">集成电路/6G关联;可进运营商、设计院、考公(网信/广电),也能转嵌入式硬件。</p>
-   <div class="sch">冲 · <b>河北工程大学</b>(575) ｜ 稳 · 福建江夏学院 / 新余学院(552)</div>
+   <p class="why" style="margin-bottom:10px"><b>485分这一档第一原则:抢公办文凭。</b>能上的几乎都是偏远公办或本地高价民办——公办文凭+低学费(4–6千/年)+考试型出口,远胜两三万/年、认可度低的民办。下面优先列<b>公办</b>。</p>
+   <h4>① 师范类 · 数学与应用数学(公办)—— 考教师编,最契合"不受歧视稳定"</h4>
+   <p class="why">教师编只看"公办本科+教资+笔试面试",<b>不看名校</b>;数学老师常年缺、女生友好、纯考试录取不歧视。485分够得着公办师范,这是她实现"稳定不受歧视"最现实的路。</p>
+   <div class="sch">冲 · <b>绥化学院 / 黑河学院</b>(师范数学,507–509,黑龙江公办) · 普洱学院 · 湖南人文科技学院 ｜ 稳 · <b>衡水学院</b>数学(484,河北公办)</div>
+   <h4>② 医学技术类(公办)· 医学影像技术 / 医学检验 / 卫生检验 —— 进医院</h4>
+   <p class="why">进<b>医院</b>,女生友好,蹭健康中国/银发经济;是"技师"方向,稳定、不用熬规培。优先公办。</p>
+   <div class="sch">冲 · <b>邢台医学院</b>医学影像技术(508,河北公办) · 喀什大学卫生检验 · 海南医科大学影像(中外合作)</div>
+   <h4>③ 计算机 / 数据科学(公办)—— 技术岗 + 考公技术岗</h4>
+   <p class="why">数字经济底座,出口宽(开发/测试/考公技术岗);相对看能力,女生站得住。她档内有少量公办,优先抢。</p>
+   <div class="sch">冲 · <b>昌吉学院</b>计算机(508,公办) · 新疆理工学院 · 河北石油职业技术大学大数据(公办) · 新疆政法学院数据科学</div>
   </div>
  </details>
 
  <details class="tier">
-  <summary><span class="tname">🥈 第二梯队</span><span class="tband g2">求稳型 · 体制内女生友好</span></summary>
+  <summary><span class="tname">🥈 第二梯队</span><span class="tband g2">可接受民办(学费高、认可度低,靠地域/产业补)</span></summary>
   <div class="body">
-   <h4>④ 数学与应用数学 / 统计学(走师范、考编)—— 最稳的一条路</h4>
-   <p class="why"><b>数学老师永远缺</b>,考教师编女生绝对不受歧视;数学/统计还是AI、数据、金融的底层,转码/考公空间大。什么风险都不想担时的首选。</p>
-   <div class="sch">冲 · <b>河北师范大学应用统计学 / 河南师大数学</b>(573) ｜ 稳 · 衡阳师范学院数学(551)</div>
-   <h4>⑤ 医学技术类:医学影像技术 / 医学检验技术 / 康复治疗学</h4>
-   <p class="why">进<b>医院编制</b>,女生友好,蹭健康中国/银发经济;比临床稳(不用5年+规培内卷)。本表里[化学]即可报。</p>
-   <div class="sch">冲 · 哈尔滨医科大学影像技术(573) ｜ 稳 · 北华大学检验技术 / 湖南中医药检验(551)</div>
-   <p class="note">是"技术"学历(技师方向),稳定但天花板低于医师,接受这点再选。</p>
-   <h4>⑥ 数据科学与大数据技术</h4>
-   <p class="why">数字经济正热。但双非要警惕沦为"做报表/数据标注",务必挑产业近、有真课程的学校,否则不如直接选计算机。</p>
+   <p class="why" style="margin-bottom:10px">不愿去偏远公办的话,本地或产业发达地区的民办也行,但<b>学费2–3万/年、文凭认可度低</b>,要想清楚。选民办优先看<b>地域(长三角/珠三角)+ 专业对口</b>,别看校名。</p>
+   <h4>④ 计算机 / 电子信息 / 数据(民办 · 独立)</h4>
+   <p class="why">挑产业近的:开发/测试/运维岗相对看能力,女生不被卡。</p>
+   <div class="sch">稳 · 宁波财经学院 / 广东东软学院(计算机,珠三角IT特色) · 北京邮电大学世纪学院通信(独立)</div>
+   <h4>⑤ 护理学 / 医学技术(民办 · 独立)—— 进医院</h4>
+   <p class="why">护理、影像、检验都是女生友好、进医院的稳定出口;民办医学校也能考护士资格/进基层医院。</p>
+   <div class="sch">稳 · 浙江树人学院检验 / 辽宁何氏医学院影像·检验 · 锦州医科大学医疗学院护理(独立)</div>
   </div>
  </details>
 
  <details class="tier">
-  <summary><span class="tname">🥉 第三梯队</span><span class="tband g3">十五五很热 · 双非要谨慎</span></summary>
+  <summary><span class="tname">⚠️ 降级提醒</span><span class="tband g3">这些在她真实分数下要重估</span></summary>
   <div class="body">
-   <h4>微电子 / 集成电路设计</h4>
-   <p class="why">风口最硬,但双非常偏理论、就业要看实习和读研。<b>愿意读研再选,只想本科就业别碰。</b></p>
-   <div class="sch">稳 · 河北科技师范学院微电子(534)</div>
-   <h4>新能源 / 储能科学与工程</h4>
-   <p class="why">十五五核心,但新兴专业双非培养质量参差,部分变相是材料/化工。<b>选老牌工科校的,别选挂名新设的。</b></p>
-   <div class="sch">冲 · 郑州轻工业大学(574) ｜ 稳 · 宁波工程学院储能(550)</div>
+   <h4>电气工程"冲国网"—— 在485分下基本走不通</h4>
+   <p class="why">国网招聘基本要<b>公办二本及以上</b>,而她档内电气<b>几乎全是民办/独立学院</b>(广州城市理工、长春光华等)。<b>别为了"国网"去读民办电气</b>——进不去。这条路相比545分假设大幅降级。</p>
+   <h4>微电子 / 新能源 / 储能 等风口</h4>
+   <p class="why">她档内全是民办/独立,培养质量参差、本科直接就业难。<b>不建议本科直接奔就业去读这些民办风口专业。</b></p>
+   <p class="note">若她愿意复读一年冲公办更好的学校,电气/计算机的"国网/大厂/考公"路会宽很多——这是另一个值得认真和她聊的选项。</p>
   </div>
  </details>
 </div></section>
@@ -318,7 +315,7 @@ select,.search{font-size:13px;padding:7px 11px;border:1px solid var(--line);bord
  <table class="tbl traptbl">
   <thead><tr><th>避坑专业</th><th>她档内条目</th><th>为什么避</th></tr></thead>
   <tbody>
-   <tr><td>土木工程</td><td>223条(510–575全覆盖)</td><td>施工歧视女生最严重 + 行业下行,双非土木=现场</td></tr>
+   <tr><td>土木工程</td><td>各分段都好进</td><td>施工歧视女生最严重 + 行业下行,双非土木=现场</td></tr>
    <tr><td>生物工程 / 生物技术</td><td>150+条</td><td>"四大天坑",本科就业差,不读到博士不兑现</td></tr>
    <tr><td>化学工程 / 应用化学</td><td>260+条</td><td>化工厂三班倒,女生进核心岗难</td></tr>
    <tr><td>材料科学与工程</td><td>63条</td><td>政策很热但本科是天坑,双非尤其惨</td></tr>
@@ -347,13 +344,13 @@ select,.search{font-size:13px;padding:7px 11px;border:1px solid var(--line);bord
  <p class="eyebrow">一句话决策</p>
  <h2>我的最终建议</h2>
  <div class="verdict">
-  <h3>没有兴趣偏向 · 就业第一 · 双非 · 要不受歧视 → 最优解很清晰</h3>
-  <p>这套组合全部踩在十五五赛道或其底层;出口都是考编/国企/医院/相对merit的技术岗,女生不被卡;双非分档全部够得着。</p>
-  <div class="pick">首选 <b>「电气工程及其自动化」</b>(冲国网),平行保 <b>「数学/统计走师范考编」</b>(铁稳),再用 <b>「计算机 / 电子信息 / 医学技术类」</b> 做志愿组中间填充。<b>坚决不碰生化环材土木采矿。</b></div>
+  <h3>485分 / 物理组18.1万位次 · 就业第一 · 要不受歧视 → 策略=公办优先,走考编/进医院</h3>
+  <p>这个分数学校牌子帮不上忙,关键是<b>抢一个公办文凭 + 选一个考试型(不歧视女生)的出口</b>。偏远公办 > 本地高价民办。</p>
+  <div class="pick">首选 <b>公办院校的「师范数学(考教师编)」</b>;其次 <b>公办「医学技术(进医院)」</b> 或 <b>公办「计算机/数据(技术岗·考公)」</b>。<b>坚决不碰生化环材土木;别为"国网"去读民办电气(进不去)。</b></div>
   <div class="next">
-   <div><b>下一步 ①</b> 给我她的<b>确切分数/位次</b>,我从1.7万条里跑出40–60个志愿的完整"冲稳保"填报表(Excel)。</div>
-   <div><b>下一步 ②</b> 把位次插值算法落地成本地小工具,输位次直接出推荐。</div>
-   <div><b>下一步 ③</b> 针对中意的某几所学校,深挖该校这些专业的真实就业流向。</div>
+   <div><b>已用她的真实位次(18.1万)预填上方工具</b> —— 直接看动态"冲稳保"表,按推荐档 / 省份 / 公办民办筛。</div>
+   <div><b>下一步 ①</b> 我可以跑出一份 40–60 个志愿的完整"冲稳保"填报表(Excel),公办优先排好。</div>
+   <div><b>下一步 ②</b> 也值得认真聊一个选项:<b>复读冲公办更好的学校</b> —— 电气/计算机的国网/考公路会宽很多。</div>
   </div>
  </div>
 </div></section>
@@ -369,7 +366,7 @@ const idx=Object.fromEntries(F.map((k,i)=>[k,i]));
 
 const steps=[
  ['①','选科可行性','这张表本身就是「物化地招生计划」,所以表里每一条她都能报。连通常要物化生的临床/药学,本表里都是[化学]即可报。','不用再担心选科限制'],
- ['②','真实定位过滤','位次>7万、分<560 = 双非/普通公办本科档。学校牌子帮不上忙,专业本身的就业能力权重拉满,选错=没退路。','【专业本身能打】权重拉满'],
+ ['②','真实定位过滤','485分、物理组位次约18.1万 = 本科中后段。能上的几乎都是偏远公办或本地高价民办,学校牌子帮不上忙→优先抢公办文凭+选考编/进医院型出口,选错=高价民办没退路。','公办优先 + 考编型出口'],
  ['③','十五五产业趋势','2026入学→2030毕业,正好踩这轮五年规划的人才扩张期。只保留政策长期砸钱、2030还在扩招人的方向。','只留政策赛道'],
  ['④','女生友好 + 不受歧视','最锋利的一刀。砍掉施工/野外/现场型,保留考公考编/国企/医院/学校型 + 相对merit的技术岗。','砍掉歧视型出口'],
  ['⑤','她这档真能录到','在前四层基础上,匹配她分档真实够得着、且拿得出手的学校。','落到真实院校'],
@@ -510,7 +507,7 @@ document.getElementById('provClear').addEventListener('click',()=>{state.provs.c
 const newBtn=document.getElementById('newBtn');
 newBtn.addEventListener('click',()=>{state.onlyNew=!state.onlyNew;newBtn.classList.toggle('on',state.onlyNew);state.limit=120;apply();});
 
-setRank(100000);
+setRank(181043);
 </script>
 </body>
 </html>
