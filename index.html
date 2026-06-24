@@ -223,6 +223,12 @@ select,.search{font-size:13px;padding:7px 11px;border:1px solid var(--line);bord
       <option value="all">冲稳保(全部)</option><option value="冲">只看冲</option>
       <option value="稳">只看稳</option><option value="保">只看保</option>
     </select>
+    <select id="nearSel">
+      <option value="0">📏 位次接近(全部)</option>
+      <option value="0.05">位次±5%(极相近)</option>
+      <option value="0.1">位次±10%(相近)</option>
+      <option value="0.2">位次±20%(较宽)</option>
+    </select>
     <div class="msWrap">
       <button class="fbtn" id="provBtn">📍 省份(全部) ▾</button>
       <div class="provpanel" id="provPanel">
@@ -259,7 +265,7 @@ select,.search{font-size:13px;padding:7px 11px;border:1px solid var(--line);bord
    <button class="more" id="moreBtn" style="display:none">显示更多 ▾</button>
   </div>
  </div>
- <p class="note">冲稳保依据她输入的位次实时计算:专业录取位次比她好≥5%=冲(>20%标"险冲");±6%以内=稳;比她差>6%=保。<b>🆕26新增</b>=该专业近三年无投档记录(2026年新设)。它没有自己的往年位次,所以"2025位次"列改显示 <b style="color:var(--new)">本校 X–Y万</b>(该校2025年所有专业的最低位次区间)作参考——新专业通常落在这个带里,可据此估计难度。</p>
+ <p class="note">冲稳保依据她输入的位次实时计算:专业录取位次比她好≥5%=冲(>20%标"险冲");±6%以内=稳;比她差>6%=保。<b>「📏位次接近」</b>是另一个视角:只看录取位次和她相差±5/10/20%以内的学校,并按"离她位次最近"排序——这些就是她最该重点研究的同档学校。<b>🆕26新增</b>=该专业近三年无投档记录(2026年新设)。它没有自己的往年位次,所以"2025位次"列改显示 <b style="color:var(--new)">本校 X–Y万</b>(该校2025年所有专业的最低位次区间)作参考——新专业通常落在这个带里,可据此估计难度。</p>
 </div></section>
 
 <section><div class="wrap">
@@ -389,7 +395,7 @@ const provList=Object.keys(provCount).sort((a,b)=>provCount[b]-provCount[a]);
 const provGrid=document.getElementById('provGrid');
 provGrid.innerHTML=provList.map(p=>`<label><input type="checkbox" value="${p}">${p}<span class="cnt">${provCount[p]}</span></label>`).join('');
 
-let state={rank:100000,reco:'all',cat:'all',type:'all',zone:'all',q:'',provs:new Set(),onlyNew:false,sort:'rank25',asc:true,limit:120};
+let state={rank:100000,reco:'all',cat:'all',type:'all',zone:'all',near:0,q:'',provs:new Set(),onlyNew:false,sort:'rank25',asc:true,limit:120};
 
 function rank2score(r){
   if(r<=10000)return 630; if(r<=30000)return 600; if(r<=50000)return 575;
@@ -421,6 +427,7 @@ function apply(){
     if(state.type!=='all' && d[1]!==state.type) return false;
     if(state.provs.size && !state.provs.has(d[13])) return false;
     if(state.onlyNew && d[14]!==1) return false;
+    if(state.near && (d[9]==null || Math.abs(d[9]-R)/R > state.near)) return false;
     if(state.q){const s=(d[0]+d[3]+d[2]+d[13]).toLowerCase();if(!s.includes(state.q.toLowerCase()))return false;}
     if(state.zone!=='all'){ if(d[14]===1)return false; const z=zoneOf(d[9],R)[2];if(z!==state.zone)return false;}
     return true;
@@ -434,6 +441,7 @@ function apply(){
   document.getElementById('cNew').textContent=cn;
   const k=state.sort;
   if(k==='zone'){out.sort((a,b)=>{const x=zoneRank(a[9],R)-zoneRank(b[9],R);return state.asc?x:-x;});}
+  else if(k==='near'){out.sort((a,b)=>{const x=Math.abs((a[9]==null?9e9:a[9])-R)-Math.abs((b[9]==null?9e9:b[9])-R);return state.asc?x:-x;});}
   else if(k==='trend'){}
   else if(k==='prov'){out.sort((a,b)=>{let x=(a[13]||'').localeCompare(b[13]||'');return state.asc?x:-x;});}
   else if(k==='school'||k==='major'){const ci=idx[k];out.sort((a,b)=>{let x=(a[ci]||'').localeCompare(b[ci]||'');return state.asc?x:-x;});}
@@ -488,6 +496,7 @@ document.querySelectorAll('#recoFilters .fbtn').forEach(b=>b.addEventListener('c
 catSel.addEventListener('change',e=>{state.cat=e.target.value;state.limit=120;apply();});
 document.getElementById('typeSel').addEventListener('change',e=>{state.type=e.target.value;state.limit=120;apply();});
 document.getElementById('zoneSel').addEventListener('change',e=>{state.zone=e.target.value;state.limit=120;apply();});
+document.getElementById('nearSel').addEventListener('change',e=>{const v=parseFloat(e.target.value);state.near=v;if(v){state.sort='near';state.asc=true;}state.limit=120;apply();});
 document.getElementById('searchIn').addEventListener('input',e=>{state.q=e.target.value;state.limit=120;apply();});
 document.getElementById('moreBtn').addEventListener('click',()=>{state.limit+=200;apply();});
 document.querySelectorAll('.etbl th[data-sort]').forEach(th=>th.addEventListener('click',()=>{
