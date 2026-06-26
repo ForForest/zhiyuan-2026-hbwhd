@@ -194,7 +194,7 @@ select,.search{font-size:13px;padding:7px 11px;border:1px solid var(--line);bord
 <section><div class="wrap">
  <p class="eyebrow">★ 交互工具 · 第①⑤层</p>
  <h2>志愿探索器</h2>
- <p class="lead">已按她的真实成绩预填位次 <b>18.1万(485分)</b>,可改。工具自动按近三年趋势给每个专业打「冲 / 稳 / 保」。可按推荐档、专业方向、<b>省份(多选)</b>、<b>学校性质(她这档优先看公办)</b>筛选,并标出 <b>🆕 2026 新增计划</b>。点表头排序。</p>
+ <p class="lead">已按她的真实成绩预填位次 <b>18.1万(485分)</b>,可改。工具自动按近三年趋势给每个专业打「冲 / 稳 / 保」。可按推荐档、专业方向、<b>省份(多选)</b>、<b>学校性质(她这档优先看公办)</b>筛选,并标出 <b>🆕 2026 新增计划</b>。<b>表格恒按 2025 位次从小到大排(最上=最难/冲,最下=最稳/保,新增专业沉底),筛选后保持此顺序</b>;也可点表头临时改排序。</p>
  <div class="exp">
   <div class="ctrl">
    <div class="rankrow">
@@ -487,17 +487,17 @@ function render(list,total){
 
 const rankIn=document.getElementById('rankIn'),rankRange=document.getElementById('rankRange');
 function setRank(v){v=Math.max(40000,Math.min(300000,+v||100000));state.rank=v;rankIn.value=v;rankRange.value=Math.min(280000,v);
-  document.getElementById('scoreEst').textContent='约'+rank2score(v)+'分';state.limit=120;apply();}
+  document.getElementById('scoreEst').textContent='约'+rank2score(v)+'分';state.sort='rank25';state.asc=true;state.limit=120;apply();}
 rankIn.addEventListener('input',e=>setRank(e.target.value));
 rankRange.addEventListener('input',e=>setRank(e.target.value));
 document.querySelectorAll('#recoFilters .fbtn').forEach(b=>b.addEventListener('click',()=>{
   document.querySelectorAll('#recoFilters .fbtn').forEach(x=>x.classList.remove('on'));
-  b.classList.add('on');state.reco=b.dataset.reco;state.limit=120;apply();}));
-catSel.addEventListener('change',e=>{state.cat=e.target.value;state.limit=120;apply();});
-document.getElementById('typeSel').addEventListener('change',e=>{state.type=e.target.value;state.limit=120;apply();});
-document.getElementById('zoneSel').addEventListener('change',e=>{state.zone=e.target.value;state.limit=120;apply();});
-document.getElementById('nearSel').addEventListener('change',e=>{const v=parseFloat(e.target.value);state.near=v;if(v){state.sort='near';state.asc=true;}state.limit=120;apply();});
-document.getElementById('searchIn').addEventListener('input',e=>{state.q=e.target.value;state.limit=120;apply();});
+  b.classList.add('on');state.reco=b.dataset.reco;state.sort='rank25';state.asc=true;state.limit=120;apply();}));
+catSel.addEventListener('change',e=>{state.cat=e.target.value;state.sort='rank25';state.asc=true;state.limit=120;apply();});
+document.getElementById('typeSel').addEventListener('change',e=>{state.type=e.target.value;state.sort='rank25';state.asc=true;state.limit=120;apply();});
+document.getElementById('zoneSel').addEventListener('change',e=>{state.zone=e.target.value;state.sort='rank25';state.asc=true;state.limit=120;apply();});
+document.getElementById('nearSel').addEventListener('change',e=>{state.near=parseFloat(e.target.value);state.sort='rank25';state.asc=true;state.limit=120;apply();});
+document.getElementById('searchIn').addEventListener('input',e=>{state.q=e.target.value;state.sort='rank25';state.asc=true;state.limit=120;apply();});
 document.getElementById('moreBtn').addEventListener('click',()=>{state.limit+=200;apply();});
 document.querySelectorAll('.etbl th[data-sort]').forEach(th=>th.addEventListener('click',()=>{
   const k=th.dataset.sort;if(state.sort===k)state.asc=!state.asc;else{state.sort=k;state.asc=(k==='rank25'||k==='zone'||k==='prov'||k==='school'||k==='major');}apply();}));
@@ -510,11 +510,11 @@ document.addEventListener('click',()=>provPanel.classList.remove('open'));
 function refreshProvBtn(){provBtn.textContent='📍 省份('+(state.provs.size?state.provs.size+'省':'全部')+') ▾';provBtn.classList.toggle('on',state.provs.size>0);}
 provGrid.querySelectorAll('input').forEach(cb=>cb.addEventListener('change',()=>{
   if(cb.checked)state.provs.add(cb.value);else state.provs.delete(cb.value);
-  refreshProvBtn();state.limit=120;apply();}));
-document.getElementById('provAll').addEventListener('click',()=>{provList.forEach(p=>state.provs.add(p));provGrid.querySelectorAll('input').forEach(cb=>cb.checked=true);refreshProvBtn();state.limit=120;apply();});
-document.getElementById('provClear').addEventListener('click',()=>{state.provs.clear();provGrid.querySelectorAll('input').forEach(cb=>cb.checked=false);refreshProvBtn();state.limit=120;apply();});
+  refreshProvBtn();state.sort='rank25';state.asc=true;state.limit=120;apply();}));
+document.getElementById('provAll').addEventListener('click',()=>{provList.forEach(p=>state.provs.add(p));provGrid.querySelectorAll('input').forEach(cb=>cb.checked=true);refreshProvBtn();state.sort='rank25';state.asc=true;state.limit=120;apply();});
+document.getElementById('provClear').addEventListener('click',()=>{state.provs.clear();provGrid.querySelectorAll('input').forEach(cb=>cb.checked=false);refreshProvBtn();state.sort='rank25';state.asc=true;state.limit=120;apply();});
 const newBtn=document.getElementById('newBtn');
-newBtn.addEventListener('click',()=>{state.onlyNew=!state.onlyNew;newBtn.classList.toggle('on',state.onlyNew);state.limit=120;apply();});
+newBtn.addEventListener('click',()=>{state.onlyNew=!state.onlyNew;newBtn.classList.toggle('on',state.onlyNew);state.sort='rank25';state.asc=true;state.limit=120;apply();});
 
 setRank(181043);
 </script>
